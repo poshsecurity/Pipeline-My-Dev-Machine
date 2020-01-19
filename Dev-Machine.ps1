@@ -25,3 +25,4 @@ choco install snagit
 choco install camtasia
 choco install adobereader
 choco install git.install --params "/NoShellIntegration /SChannel"
+choco install telegram.install
