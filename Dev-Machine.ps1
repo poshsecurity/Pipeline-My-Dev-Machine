@@ -15,3 +15,8 @@ choco install powershell-preview
 choco install vscode.install
 choco install glasswire
 choco install rsat
+choco install sql-server-management-studio
+choco install wireshark
+choco install fiddler
+choco install winmerge
+choco install postman
