@@ -17,13 +17,10 @@ choco install glasswire
 choco install rsat
 choco install sql-server-management-studio
 choco install wireshark
-choco install fiddler
 choco install winmerge
-choco install postman
 choco install vlc
 choco install snagit
 choco install camtasia
 choco install adobereader
 choco install git.install --params "/NoShellIntegration /SChannel"
-choco install telegram.install
 choco install 7zip.install
