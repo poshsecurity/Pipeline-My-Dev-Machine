@@ -25,3 +25,4 @@ choco install adobereader
 choco install git.install --params "/NoShellIntegration /SChannel"
 choco install 7zip.install
 choco install powertoys
+choco install keybase
