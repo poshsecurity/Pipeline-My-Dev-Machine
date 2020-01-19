@@ -6,6 +6,9 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.We
 # Enable Chocolatey features
 choco feature enable -n allowGlobalConfirmation
 
+# Upgrade any existing apps
+choco upgrade all
+
 # Install some apps
 choco install kb2999226
 choco install powershell-preview
