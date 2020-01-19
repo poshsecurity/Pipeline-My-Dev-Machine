@@ -26,3 +26,6 @@ choco install git.install --params "/NoShellIntegration /SChannel"
 choco install 7zip.install
 choco install powertoys
 choco install keybase
+
+# Set UAC to full
+$null = Set-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System' -Name 'ConsentPromptBehaviorAdmin' -Value 2
