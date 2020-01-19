@@ -75,3 +75,90 @@ foreach ($Cipher in $SecureCiphers)
         $CipherKey.close()
     }
 }
+
+# Disable MD5
+if (-not (Test-Path 'HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Hashes\MD5')) {
+    $null = New-Item 'HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Hashes\MD5' -ItemType Directory
+}
+if ((Get-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Hashes\MD5').Enabled -ne 0) {
+    $null = New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Hashes\MD5' -Name 'Enabled' -Value 0
+}
+
+# Enable SHA
+if (-not (Test-Path 'HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Hashes\SHA')) {
+    $null = New-Item 'HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Hashes\SHA' -ItemType Directory
+}
+if ((Get-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Hashes\SHA').Enabled -ne 1) {
+    $null = New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Hashes\SHA' -Name 'Enabled' -Value 1
+}
+
+# Enable Diffie-Hellman / PKCS
+$KeyExchangeAlgorithms = 'Diffie-Hellman', 'PKCS'
+foreach ($KeyExchangeAlgorithm in $KeyExchangeAlgorithms)
+{
+    if (-not (Test-Path "HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\KeyExchangeAlgorithms\$KeyExchangeAlgorithm")) {
+        $null = New-Item "HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\KeyExchangeAlgorithms\$KeyExchangeAlgorithm" -ItemType Directory
+    }
+    if ((Get-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\KeyExchangeAlgorithms\$KeyExchangeAlgorithm").Enabled -ne 1) {
+        $null = New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\KeyExchangeAlgorithms\$KeyExchangeAlgorithm" -Name 'Enabled' -Value 1
+    }
+}
+
+# Update Cipher Suite Order
+$cipherSuitesOrder = @(
+    'TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P521',
+    'TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384',
+    'TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256',
+    'TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA_P521',
+    'TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA_P384',
+    'TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA_P256',
+    'TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P521',
+    'TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA_P521',
+    'TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P384',
+    'TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256',
+    'TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA_P384',
+    'TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA_P256',
+    'TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384_P521',
+    'TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384_P384',
+    'TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256_P521',
+    'TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256_P384',
+    'TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256_P256',
+    'TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384_P521',
+    'TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384_P384',
+    'TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA_P521',
+    'TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA_P384',
+    'TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA_P256',
+    'TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256_P521',
+    'TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256_P384',
+    'TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256_P256',
+    'TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA_P521',
+    'TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA_P384',
+    'TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA_P256',
+    'TLS_DHE_DSS_WITH_AES_256_CBC_SHA256',
+    'TLS_DHE_DSS_WITH_AES_256_CBC_SHA',
+    'TLS_DHE_DSS_WITH_AES_128_CBC_SHA256',
+    'TLS_DHE_DSS_WITH_AES_128_CBC_SHA',
+    'TLS_DHE_DSS_WITH_3DES_EDE_CBC_SHA'
+)
+$cipherSuitesAsString = [string]::join(',', $cipherSuitesOrder)
+if (-not (Get-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Cryptography\Configuration\SSL\00010002').Functions -eq $cipherSuitesAsString) {
+    $null = New-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Cryptography\Configuration\SSL\00010002' -Name 'Functions' -Value $cipherSuitesAsString -PropertyType String
+}
+
+# Disable PCT 1.0 / SSL 3.0 / SSL 2.0 / TLS 1.0 / TLS 1.1
+$sslVersions = 'PCT 1.0', 'SSL 3.0', 'SSL 2.0', 'TLS 1.0', 'TLS 1.1'
+foreach ($sslVersion in $sslVersions)
+{
+    if (-not (Test-Path "HKLM:\System\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\$sslVersion")) {
+        $null = New-Item "HKLM:\System\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\$sslVersion" -ItemType Directory
+    }
+    if (-not (Test-Path "HKLM:\System\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\$sslVersion\Server")) {
+        $null = New-Item "HKLM:\System\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\$sslVersion\Server" -ItemType Directory
+    }
+    if ((Get-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\$sslVersion\Server").Enabled -ne 0) {
+        $null = New-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\$sslVersion\Server" -Name 'Enabled' -Value 0
+    }
+    if ((Get-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\$sslVersion\Server").DisabledByDefault -ne 1) {
+        $null = New-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\$sslVersion\Server" -Name 'DisabledByDefault' -Value 1
+    }
+}
