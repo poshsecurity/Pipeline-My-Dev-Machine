@@ -30,6 +30,8 @@ if ((Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Pol
     $null = Set-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System' -Name 'ConsentPromptBehaviorAdmin' -Value 2
 }
 
+<#
+
 # Forcing .Net v2.0.50727 to use TLS 1.2 by default
 if ((Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\.NETFramework\v2.0.50727').SchUseStrongCrypto -ne 1) {
     $null = New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\.NETFramework\v2.0.50727' -Name 'SchUseStrongCrypto' -PropertyType DWORD -Value 1
@@ -162,3 +164,5 @@ foreach ($sslVersion in $sslVersions)
         $null = New-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\$sslVersion\Server" -Name 'DisabledByDefault' -Value 1
     }
 }
+
+#>
