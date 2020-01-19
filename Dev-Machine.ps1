@@ -20,3 +20,6 @@ choco install wireshark
 choco install fiddler
 choco install winmerge
 choco install postman
+choco install vlc
+choco install snagit
+choco install camtasia
