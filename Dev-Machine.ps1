@@ -24,12 +24,14 @@ choco install git.install --params "/NoShellIntegration /SChannel"
 choco install 7zip.install
 choco install powertoys
 choco install keybase
+choco install discord.install
 
 # Set UAC to full
 if ((Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System').ConsentPromptBehaviorAdmin -ne 2) {
     $null = Set-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System' -Name 'ConsentPromptBehaviorAdmin' -Value 2
 }
 
+<#
 # Forcing .Net v2.0.50727 to use TLS 1.2 by default
 if ((Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\.NETFramework\v2.0.50727').SchUseStrongCrypto -ne 1) {
     $null = New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\.NETFramework\v2.0.50727' -Name 'SchUseStrongCrypto' -PropertyType DWORD -Value 1
@@ -46,7 +48,7 @@ if ((Get-ItemProperty -Path 'HKLM:\SOFTWARE\Wow6432Node\Microsoft\.NETFramework\
     $null = New-ItemProperty -Path 'HKLM:\SOFTWARE\Wow6432Node\Microsoft\.NETFramework\v4.0.30319' -Name 'SchUseStrongCrypto' -PropertyType DWORD -Value 1
 }
 
-<#
+
 # Disable insecure ciphers
 $InsecureCiphers = 'DES 56/56', 'NULL', 'RC2 128/128', 'RC2 40/128', 'RC2 56/128', 'RC4 40/128', 'RC4 56/128', 'RC4 64/128', 'RC4 128/128'
 foreach ($Cipher in $InsecureCiphers)
