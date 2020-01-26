@@ -9,6 +9,7 @@ choco upgrade all
 
 # Install some apps
 choco install kb2999226
+choco install powershell-core
 choco install powershell-preview
 choco install vscode.install
 choco install glasswire
