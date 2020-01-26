@@ -26,6 +26,7 @@ choco install 7zip.install
 choco install powertoys
 choco install discord.install
 choco install gpg4win
+choco install vcredist-all
 
 # Set UAC to full
 if ((Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System').ConsentPromptBehaviorAdmin -ne 2) {
