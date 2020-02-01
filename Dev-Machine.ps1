@@ -12,7 +12,6 @@ choco install kb2999226
 choco install powershell-core
 choco install powershell-preview
 choco install vscode.install
-choco install glasswire
 choco install rsat
 choco install sql-server-management-studio
 choco install wireshark
