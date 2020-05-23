@@ -32,9 +32,3 @@ choco install makemeadmin
 if ((Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System').ConsentPromptBehaviorAdmin -ne 2) {
     $null = Set-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System' -Name 'ConsentPromptBehaviorAdmin' -Value 2
 }
-
-# Mitigation for CVE-2020-0674
-takeown /f %windir%\syswow64\jscript.dll
-cacls %windir%\syswow64\jscript.dll /E /P everyone:N
-takeown /f %windir%\system32\jscript.dll
-cacls %windir%\system32\jscript.dll /E /P everyone:N
