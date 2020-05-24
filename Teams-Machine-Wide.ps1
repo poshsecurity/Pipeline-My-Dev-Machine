@@ -1,1 +1,1 @@
-choco install microsoft-teams.install
+winget install "Microsoft Teams"
