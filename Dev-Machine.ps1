@@ -2,6 +2,7 @@
 winget install PowerShell-Preview
 winget install Powershell
 winget install vscode
+# winget install vscode-insiders # Pending PR completion
 winget install SSMS
 winget install Wireshark
 winget install WinMerge
