@@ -8,6 +8,7 @@ winget install WinMerge
 winget install VLC
 winget install adobereader
 winget install Git
+winget install 7Zip
 winget install PowerToys
 winget install Discord
 winget install Gpg4win
