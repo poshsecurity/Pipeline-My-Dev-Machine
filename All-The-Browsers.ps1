@@ -1,6 +1,6 @@
-winget install firefox
+winget install firefox -e
 winget install chrome
 winget install "Microsoft Edge Dev"
-winget install msedgebeta
-winget install msedge
+winget install msedgebeta -e
+winget install msedge -e
 winget install Bravelaptopanddesktopbrowser # Previously had to be done manually
