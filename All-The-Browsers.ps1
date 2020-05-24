@@ -1,5 +1,5 @@
-choco install firefox
-choco install googlechrome
-choco install microsoft-edge-insider-dev
-choco install microsoft-edge-insider
-choco install microsoft-edge
+winget install firefox
+winget install chrome
+winget install "Microsoft Edge Dev"
+winget install msedgebeta
+winget install msedge
