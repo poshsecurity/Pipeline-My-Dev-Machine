@@ -1,17 +1,17 @@
 # Install some apps
 winget install PowerShell-Preview
-winget install Powershell
+winget install Powershell -e 
 winget install vscode
 # winget install vscode-insiders # Pending PR completion
-winget install SSMS
+# winget install SSMS # Seems broken
 winget install Wireshark
 winget install WinMerge
 winget install VLC
 winget install adobereader
-winget install Git
+winget install Git -e12
 winget install 7Zip
 winget install PowerToys
-winget install Discord
+winget install Discord -e
 winget install Gpg4win
 winget install iTunes           # Was using windows store - moving to winget
 winget install GitKraken        # Was doing this one manually - moving to winget
