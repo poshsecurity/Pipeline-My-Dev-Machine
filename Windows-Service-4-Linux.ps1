@@ -12,3 +12,4 @@ choco install wsl-sles
 choco install wsl-debiangnulinux
 choco install wsl-kalilinux
 choco install wsl-ubuntu-1604
+choco install wsl-ubuntu-2004
