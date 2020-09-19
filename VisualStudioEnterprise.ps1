@@ -1,1 +1,1 @@
-winget install "Visual Studio Enterprise"
+winget install Microsoft.VisualStudio.Enterprise
