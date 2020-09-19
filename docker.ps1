@@ -1,1 +1,1 @@
-winget install DockerDesktop
+winget install Docker.DockerDesktop -e
