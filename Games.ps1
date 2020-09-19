@@ -1,6 +1,6 @@
-winget install EpicGames.EpicGamesLauncher
-winget install Valve.Steam
-winget install ElectronicArts.Origin
-winget install RiotGames.Valorant
-winget install Ubisoft.Uplay
-winget install Blizzard.BattleNet
+winget install EpicGames.EpicGamesLauncher -e
+winget install Valve.Steam -e
+winget install ElectronicArts.Origin -e
+winget install RiotGames.Valorant -e
+winget install Ubisoft.Uplay -e
+winget install Blizzard.BattleNet -e
