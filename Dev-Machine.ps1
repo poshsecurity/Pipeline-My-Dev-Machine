@@ -20,6 +20,9 @@ winget install Telerik.FiddlerEverywhere -e
 winget install WinDirStat.WinDirStat -e
 winget install TeamViewer.TeamViewer -e
 winget install RescueTime.RescueTime -e
+winget install GitHub.cli -e
+winget install JAMSoftware.TreeSizeFree -e
+winget install Zoom.Zoom -e
 
 # Set UAC to full
 if ((Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System').ConsentPromptBehaviorAdmin -ne 2) {
