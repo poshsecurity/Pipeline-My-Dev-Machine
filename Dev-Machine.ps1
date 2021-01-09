@@ -23,6 +23,10 @@ winget install RescueTime.RescueTime -e
 winget install GitHub.cli -e
 winget install JAMSoftware.TreeSizeFree -e
 winget install Zoom.Zoom -e
+winget install RescueTime.RescueTime -e
+winget install WestWind.MarkdownMonster -e
+winget install Microsoft.SharePointOnlineManagementShell -e
+ 
 
 # Set UAC to full
 if ((Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System').ConsentPromptBehaviorAdmin -ne 2) {
