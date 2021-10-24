@@ -1,3 +1,4 @@
+winget install Microsoft.Office -e
 winget install Microsoft.PowerShell-Preview -e
 winget install Microsoft.PowerShell -e 
 winget install Microsoft.VisualStudioCode -e
