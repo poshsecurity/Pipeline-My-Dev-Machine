@@ -1,1 +1,1 @@
-winget install Microsoft.VisualStudio.Enterprise
+winget install Microsoft.VisualStudio.2022.Enterprise -e
