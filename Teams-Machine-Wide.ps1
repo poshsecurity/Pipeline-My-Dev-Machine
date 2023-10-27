@@ -1,1 +1,1 @@
-winget install "Microsoft Teams"
+winget install Microsoft.Teams.Preview -e
