@@ -9,7 +9,7 @@ $packageIDs = $(
   'Microsoft.VisualStudioCode.Insiders'
   'Microsoft.WindowsTerminal'
   'Microsoft.WindowsTerminal.Preview'
-  'Python.Launcher'
+  'Python.PythonInstallManager'
   'WinDirStat.WinDirStat'
   'WinMerge.WinMerge'
   'WinSCP.WinSCP'
