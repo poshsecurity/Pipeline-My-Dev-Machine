@@ -1,4 +1,4 @@
-$packageIDs = $(
+$packageIDs = @(
   'Blizzard.BattleNet'
   'ElectronicArts.EADesktop'
   'EpicGames.EpicGamesLauncher'
