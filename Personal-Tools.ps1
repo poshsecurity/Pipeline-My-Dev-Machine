@@ -1,4 +1,4 @@
-$packageIDs = $(
+$packageIDs = @(
   'Dell.DisplayManager'
   'Discord.Discord'
   'Elgato.StreamDeck'
