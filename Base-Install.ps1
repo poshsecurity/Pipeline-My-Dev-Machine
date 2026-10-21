@@ -1,4 +1,4 @@
-$packageIDs = $(
+$packageIDs = @(
   'Adobe.Acrobat.Reader.64-bit'
   'Axosoft.GitKraken'
   'Git.Git'
