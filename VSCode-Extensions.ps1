@@ -1,12 +1,17 @@
-code --install-extension DavidAnson.vscode-markdownlint
-code --install-extension eamodio.gitlens
-code --install-extension GitHub.copilot
-code --install-extension GitHub.copilot-chat
-code --install-extension Gruntfuggly.todo-tree
-code --install-extension leighlondon.eml
-code --install-extension mechatroner.rainbow-csv
-code --install-extension ms-vscode.powershell
-code --install-extension nickdemayo.vscode-json-editor
-code --install-extension RaillyHugo.one-hunter
-code --install-extension Tailscale.vscode-tailscale
-code --install-extension tlahmann.alex-linter
+$codeExtensions = @(
+  'DavidAnson.vscode-markdownlint'	         # https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint
+  'esbenp.prettier-vscode'	                 # https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode
+ ' Gruntfuggly.todo-tree'                  	 # https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.todo-tree
+  'mechatroner.rainbow-csv'	                 # https://marketplace.visualstudio.com/items?itemName=mechatroner.rainbow-csv
+  'ms-python.python'	                       # https://marketplace.visualstudio.com/items?itemName=ms-python.python
+  'ms-python.vscode-pylance'	               # https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance
+  'ms-python.vscode-python-envs'	           # https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-python-envs
+  'ms-python.debugpy'	                       # https://marketplace.visualstudio.com/items?itemName=ms-python.debugpy
+  'ms-vscode.powershell'	                   # https://marketplace.visualstudio.com/items?itemName=ms-vscode.PowerShell
+  'phoihos.csv-to-md-table'	                 # https://marketplace.visualstudio.com/items?itemName=phoihos.csv-to-md-table
+  'streetsidesoftware.code-spell-checker'    # https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker
+  'tinkertrain.theme-panda'	                 # https://marketplace.visualstudio.com/items?itemName=tinkertrain.theme-panda
+  'tlahmann.alex-linter'	                   # https://marketplace.visualstudio.com/items?itemName=TLahmann.alex-linter
+)
+
+$codeExtensions.ForEach({code --install-extension $_})
